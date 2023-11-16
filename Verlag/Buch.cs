@@ -7,7 +7,7 @@ namespace Verlag
         private string autor;
         private string titel;
         private int auflage;
-        List<string> verboteneZeichen = new List<string> {"", "#", ";", "§", "%"};
+        List<char> verboteneZeichen = new List<char> {'#', ';', '§', '%'};
         
 
 
@@ -18,15 +18,23 @@ namespace Verlag
             this.titel = titel;
             this.auflage = 1;
 
-            for(int i = 0; i < titel.Length; i++)
+            foreach(char a in autor)
             {
-                if (verboteneZeichen.Contains(titel.Substring(i, 1)) == true)
+                if (verboteneZeichen.Contains(a) == true || a == null)
                 {
                     throw new ArgumentException("Du hast verbotene Zeichen benutzt!");
                 }
 
             }
-            
+
+            if(autor == "")
+            {
+                throw new ArgumentException("Du hast verbotene Zeichen benutzt!");
+            }
+
+
+
+
         }
 
         public Buch(string autor, string titel, int auflage)
