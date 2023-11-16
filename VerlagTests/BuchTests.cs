@@ -113,26 +113,26 @@ namespace VerlagTests
 			string isbn = "978-1-287-63948-2";
 
 			//Act
-			b.Isbn = isbn;
+			b.ISBN = isbn;
 
 			//Assert
-			Assert.AreEqual(isbn, b.Isbn);
+			Assert.AreEqual(isbn, b.ISBN);
 		}
 
         [TestMethod]
-        public int ISBN_convert_to_isbn10()
+        public void ISBN_KonvertiereZuIsbn10()
         {
             //Arrange
-            BuchTests b = new buch("autor", "titel");
+            Buch b = new Buch("autor", "titel");
 
             string isbn13 = "978-3-88661-189-8";
-            string isbn10 = "3-88661-189";
+            string isbn10;
 
             //Act
-            b.ISBN = isbn13;
+            b.ISBN_KonvertiereZuIsbn10()
 
             //Assert
-            Assert.AreEqual(isbn10, b.ISBN);
+            Assert.AreEqual("3-88661-189" , isbn10);
 
         }
     }
