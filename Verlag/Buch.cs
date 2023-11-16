@@ -7,7 +7,8 @@ namespace Verlag
         private string autor;
         private string titel;
         private int auflage;
-        List<string> verboteneZeichen = new List<string> {"", "#", ";", "§", "%", null };
+        List<string> verboteneZeichen = new List<string> {"", "#", ";", "§", "%"};
+        
 
 
         public Buch(string autor, string titel)
