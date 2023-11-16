@@ -24,6 +24,8 @@ namespace VerlagTests
 			Assert.AreEqual(auflage, b.Auflage);
 		}
 
+
+
 		[TestMethod]
 		public void Buch_KeineAuflageEntsprichtErsterAuflage()
 		{
@@ -105,5 +107,52 @@ namespace VerlagTests
 			//Act
 			Buch b = new Buch(unerlaubtesZeichen, "titel");
 		}
-	}
+
+
+		[TestMethod]
+        public static string Calculate(string isbn13)
+        {
+            // Arrange
+            if (isbn13.Length != 13)
+            {
+                throw new ArgumentException("Die ISBN 13 muss 13 Zeichen lang sein.");
+            }
+
+            // Act
+            int[] isbn13ziffern = new int[12];
+            for (int i = 0; i < 12; i++)
+            {
+                isbn13ziffern[i] = (int)(isbn13[i] - '0');
+            }
+
+            // Die ISBN 10 als Int-Array speichern
+            int[] isbn10ziffern = new int[10];
+            for (int i = 0; i < 10; i++)
+            {
+                isbn10ziffern[i] = isbn13ziffern[i] * (i % 2 + 1);
+            }
+
+            // Die ISBN 10 als String zurückgeben
+            string isbn10 = "";
+            for (int i = 9; i >= 0; i--)
+            {
+                isbn10 += isbn10ziffern[i] + "";
+            }
+
+            return isbn10;
+        }
+
+        public static void Main()
+        {
+            // Testfälle
+            string isbn13 = "978-3770436064";
+            string sollIsbn10 = "3770436067";
+            string calculatedIsbn10 = Calculate(isbn13);
+
+            // Asserts
+            Assert.AreEqual(sollIsbn10, calculatedIsbn10);
+        }
+    }
+
 }
+
