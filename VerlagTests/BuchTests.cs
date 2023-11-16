@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Verlag;
 
@@ -105,5 +107,21 @@ namespace VerlagTests
 			//Act
 			Buch b = new Buch(unerlaubtesZeichen, "titel");
 		}
+		[TestMethod]
+		public int ISBN_convert_to_isbn10()
+		{
+			//Arrange
+			BuchTests b = new buch("autor", "titel");
+
+			string isbn13 = "978-3-88661-189-8";
+            string isbn10 = "3-88661-189";
+
+			//Act
+			b.ISBN = isbn13;
+
+			//Assert
+			Assert.AreEqual(isbn10, b.ISBN);
+
+        }
 	}
 }
