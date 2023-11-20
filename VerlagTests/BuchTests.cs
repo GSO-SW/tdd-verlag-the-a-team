@@ -24,6 +24,8 @@ namespace VerlagTests
 			Assert.AreEqual(auflage, b.Auflage);
 		}
 
+
+
 		[TestMethod]
 		public void Buch_KeineAuflageEntsprichtErsterAuflage()
 		{
@@ -137,3 +139,4 @@ namespace VerlagTests
         }
     }
 }
+
